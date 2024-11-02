@@ -1,0 +1,1 @@
+/usr/local/bin/php artisan app:update-exchange-rates
