@@ -3,31 +3,20 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Set up Docker
-        uses: actions/setup-docker@v1
+      - name: Run docker-compose
+        uses: hoverkraft-tech/compose-action@v2.0.1
 
-      - name: Install Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-          sudo usermod -aG docker $USER
-          newgrp docker
-          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
-          sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+      - name: Execute tests in the running services
+        run: docker-compose exec composer deploy
 
-      - name: Build and Push Docker image
-        run: |
-          cd /var/www
-          docker-compose -f docker-compose.yml up -d
-          
+      - name: Deploy on pages
+        uses: actions/deploy-pages@v4.0.5
