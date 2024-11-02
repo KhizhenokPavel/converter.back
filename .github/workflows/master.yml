@@ -30,7 +30,7 @@ jobs:
 
     - name: Build and push Docker images
       run: | 
-        cd /home/runner/work/converter.back
+        cd /home/runner/work/converter.back/converter.back
         ls -la
         docker-compose up -d
         docker-compose exec php composer deploy
