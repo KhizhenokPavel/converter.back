@@ -29,7 +29,10 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and push Docker images
-      run: docker-compose up -d
+      run: | 
+        cd /var/www
+        docker-compose up -d
+        docker-compose exec composer deploy
       env:
         DOCKER_BUILDKIT: 1
         COMPOSE_DOCKER_CLI_BUILD: 1
