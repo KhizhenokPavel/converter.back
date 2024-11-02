@@ -29,10 +29,10 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and push Docker images
-      run: | 
-        cd /var/www
-        docker-compose up -d
-        docker-compose exec composer deploy
-      env:
-        DOCKER_BUILDKIT: 1
-        COMPOSE_DOCKER_CLI_BUILD: 1
+      run: |
+        docker-compose -f docker-compose.yml build
+        docker-compose -f docker-compose.yml push
+
+    - name: Start Docker Compose services
+      run: |
+        docker-compose -f docker-compose.yml up -d
