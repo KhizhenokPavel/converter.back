@@ -15,7 +15,7 @@ class CheckApiKey
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $apiKey = $request->header('apiKey');
+        $apiKey = $request->header('Apikey');
 
         if (!$apiKey || $apiKey != env('APP_API_KEY')) { 
             return response()->json(['error' => 'Unauthorized'], 401);
