@@ -33,4 +33,11 @@ jobs:
         ls -la
         cp -n .env.example .env
         docker-compose up --build
-        docker-compose exec php composer deploy
+
+  install:
+    runs-on: self-hosted
+    needs: deploy
+    
+    steps:
+    - name: Build and push Docker images
+      run: docker-compose exec php composer deploy
