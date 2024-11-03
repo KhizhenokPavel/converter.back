@@ -35,4 +35,8 @@ class ExchangeRate extends Model
 
         return $formattedRates;
     }
+
+    public static function getExchangeRate(string $from, string $to) {
+        return static::where('from_currency_code', $from)->where('to_currency_code', $to)->first();
+    }
 }

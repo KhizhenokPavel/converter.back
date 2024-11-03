@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ExchangeRateExist;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ConverterConvertRequest extends FormRequest
@@ -25,6 +26,7 @@ class ConverterConvertRequest extends FormRequest
             'from' => 'required|string|exists:available_currencies,currency_code',
             'to' => 'required|string|exists:available_currencies,currency_code',
             'amount' => 'required|numeric',
+            new ExchangeRateExist($this->all()),
         ];
     }
 }
