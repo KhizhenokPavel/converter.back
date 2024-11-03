@@ -18,7 +18,7 @@ class CheckApiKey
         $apiKey = $request->header('Apikey');
 
         if (!$apiKey || $apiKey != env('APP_API_KEY')) { 
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => $apiKey . ':' . $request->header('Apikey')], 401);
         }
 
         return $next($request);
