@@ -57,12 +57,6 @@
             "php artisan key:generate",
             "php artisan config:cache",
             "php artisan migrate"
-        ],
-        "deploy": [
-            "docker compose exec phpmyadmin chmod 777 /sessions",
-            "docker compose exec php chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache",
-            "docker compose exec php chmod -R 775 /var/www/storage /var/www/bootstrap/cache",
-            "docker compose exec php composer setup"
         ]
     },
     "extra": {
