@@ -31,11 +31,10 @@ jobs:
       run: |
         docker ps
         sleep 30
-        docker-compose exec -T phpmyadmin ls,
-        docker-compose exec -T phpmyadmin chmod 777 /sessions,
-        docker-compose exec -T php chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache,
-        docker-compose exec -T php chmod -R 775 /var/www/storage /var/www/bootstrap/cache,
-        docker-compose exec -T php composer setup"
+        docker-compose exec -T php chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+        docker-compose exec -T php chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+        docker-compose exec -T php composer setup
+        docker-compose exec -T phpmyadmin chmod 777 /sessions
 
     - name: Published on github pages
       uses: actions/configure-pages@v5
