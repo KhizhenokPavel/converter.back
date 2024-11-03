@@ -32,7 +32,7 @@ jobs:
       run: | 
         ls -la
         cp -n .env.example .env
-        docker-compose up --build
+        docker-compose up -d --build
 
   install:
     runs-on: self-hosted
