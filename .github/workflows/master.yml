@@ -35,7 +35,7 @@ jobs:
         docker-compose up -d --build
 
     - name: Build and push Docker images
-      run: docker-compose exec php composer deploy
+      run: docker-compose exec -T php composer deploy
 
     - name: Published on github pages
       uses: actions/configure-pages@v5
