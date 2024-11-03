@@ -38,6 +38,3 @@ jobs:
 
     - name: Published on github pages
       uses: actions/configure-pages@v5
-
-    - name: Published on github pages
-      uses: actions/upload-pages-artifact@v3
